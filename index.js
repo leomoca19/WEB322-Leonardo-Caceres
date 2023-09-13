@@ -4,7 +4,9 @@ const myEventEmitter = new EventEmitter()
 // Display "Red" using console.log for 5 seconds.
 myEventEmitter.on('red', ()=>{
     console.log('red')
-    setTimeout(()=>{}, 5000)
+    setTimeout(()=>{
+        console.log('')
+    }, 5000)
 })
 
 // Display "Yellow" for 2 seconds.
