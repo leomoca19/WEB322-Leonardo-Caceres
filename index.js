@@ -3,9 +3,8 @@ const myEventEmitter = new EventEmitter()
 
 // Display "Red" using console.log for 5 seconds.
 myEventEmitter.on('red', ()=>{
-    setTimeout(()=>{
-        console.log('red')
-    }, 1000)
+    console.log('red')
+    setTimeout(()=>{}, 5000)
 })
 
 // Display "Yellow" for 2 seconds.
@@ -14,4 +13,4 @@ myEventEmitter.on('red', ()=>{
 // Implement an event emitter to emit an event ```console.log('The light just changed')```` whenever the color changes.
 // Bonus: The event should include the current color as a parameter.
 
-
+myEventEmitter.emit('red')
