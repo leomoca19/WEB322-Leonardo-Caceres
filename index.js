@@ -1,26 +1,27 @@
 const EventEmitter = require('events')
 const myEventEmitter = new EventEmitter()
 
-// Display "Red" using console.log for 5 seconds.
-myEventEmitter.on('red', ()=>{
-    console.log('red')
-    setTimeout(()=>{
-        console.log('')
-    }, 5000)
-})
+const lights = [
+    {color:"red", duration:5000},
+    {color:"yellow", duration:2000},
+    {color:"green", duration:5000}
 
-// Display "Yellow" for 2 seconds.
-myEventEmitter.on('yellow', ()=>{
-    console.log('yellow')
-    setTimeout(()=>{
-        console.log('')
-    }, 2000)
-})
+]
 
-// Display "Green" for 5 seconds.
+let i = 0
+function lightChange() {
+    console.log(lights[i++].color)
+    // i === 3 ? 0 : i++
+    if(i === 3){
+        i = 0
+    }
+
+    setTimeout(lightChange, lights[i].duration)
+}
+
 // The cycle should repeat indefinitely.
 // Implement an event emitter to emit an event ```console.log('The light just changed')```` whenever the color changes.
 // Bonus: The event should include the current color as a parameter.
+// myEventEmitter.on('')///////////
 
-myEventEmitter.emit('red')
-myEventEmitter.emit('yellow')
+lightChange()
