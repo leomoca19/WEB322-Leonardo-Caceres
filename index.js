@@ -16,8 +16,7 @@ function lightChange() {
 }
 
 myEventEmitter.on('change-lights', (color)=>{
-    console.log(color)
-    console.log('The light just changed')
+    console.log(`${color}\nThe light just changed`)
 })
 
 lightChange()
