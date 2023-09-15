@@ -2,9 +2,9 @@ const EventEmitter = require('events')
 const myEventEmitter = new EventEmitter()
 
 const lights = [
-    {color:"red", duration:5000},
+    {color:"green", duration:5000},
     {color:"yellow", duration:2000},
-    {color:"green", duration:5000}
+    {color:"red", duration:5000}
 
 ]
 
