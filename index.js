@@ -10,15 +10,13 @@ const lights = [
 
 let i = 0
 function lightChange() {
-    myEventEmitter.emit('change-lights')
+    myEventEmitter.emit('change-lights', lights[i].color)
     i = i === 2 ? 0 : i + 1 //i++ wouldn't work, i = i++ wouldn't work as expected
     setTimeout(lightChange, lights[i].duration) //problem, each lights waits for the time of the next light because the index was incremented before this line is executed
 }
 
-// Implement an event emitter to emit an event ```console.log('The light just changed')```` whenever the color changes.
-// Bonus: The event should include the current color as a parameter.
-myEventEmitter.on('change-lights', ()=>{
-    console.log(lights[i].color)
+myEventEmitter.on('change-lights', (color)=>{
+    console.log(color)
     console.log('The light just changed')
 })
 
