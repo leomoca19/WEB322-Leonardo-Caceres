@@ -8,11 +8,11 @@ const lights = [
 
 ]
 
-let i = 0
+let i = -1
 function lightChange() {
+    i = i === 2 ? 0 : i + 1
     myEventEmitter.emit('change-lights', lights[i].color)
-    i = i === 2 ? 0 : i + 1 //i++ wouldn't work, i = i++ wouldn't work as expected
-    setTimeout(lightChange, lights[i].duration) //problem, each lights waits for the time of the next light because the index was incremented before this line is executed
+    setTimeout(lightChange, lights[i].duration) 
 }
 
 myEventEmitter.on('change-lights', (color)=>{
