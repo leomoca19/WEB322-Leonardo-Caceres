@@ -2,7 +2,7 @@
 
 | Component           |                            | Points  | Grade |
 | ------------------- | -------------------------- | ------- | ----- |
-| Github              | repo created               | 10      | 10    |
+| Github              | repo created               | 10      | 8     |
 |                     | naming convention followed | 10      | 10    |
 |                     | branch created             | 10      | 10    |
 |                     | branch name properly       | 10      | 10    |
@@ -14,7 +14,7 @@
 
 ## Feeback
 
-Hey how about a perfect? Nice job.
+So close to perfect! You need to add me as a collaborator with write permissions.
 
 Take a look at these solutions for other ideas.
 
