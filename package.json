@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/leomoca19/WEB322-Leonardo-Caceres/issues"
   },
-  "homepage": "https://github.com/leomoca19/WEB322-Leonardo-Caceres#readme"
+  "homepage": "https://github.com/leomoca19/WEB322-Leonardo-Caceres#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
