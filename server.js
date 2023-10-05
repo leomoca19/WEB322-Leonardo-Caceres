@@ -10,12 +10,41 @@ const users = [ //should be changed to the database(jsons file) contents
 ]
 
 
+//Home menu
+const menu = 
+`<nav>
+    <a href="/">Home</a>
+    &nbsp;|&nbsp;
+    <a href="/list">List</a>
+</div>`;
+
+//Routes 
+{
+    app.get('/', (req, res)=>{
+        res.send(`${menu}
+        <h1>Login</h1>
+        <form method="POST">
+            <input type="text" name="username" />
+            <input type="password" name="password" />
+            <button type="submit">GO!</button>
+        </form>`)
+    })
+    app.post('/', (req, res)=>{
+        res.send('Logged-in')
+    })
+
+    app.get('/list', (req,res)=>{
+        const userList = users.map(users)=>{
+
+        }
+    })
+
+    app.get('/details/:id', (req,res)=>{
+        res.send(``) 
+    })
 
 
-//Routes
-app.get('/', (req, res)=>{
-    send('<h1>Log-in</h1>')
-})
+}
 
 
 app.listen(PORT, ()=>{
