@@ -16,7 +16,7 @@ const template = (title, html) => `
       <div>${html}</div> 
     </body>
   </html>
-  `
+`
 
 
 const htmlContent = (errorMsg = '') => `
@@ -34,6 +34,6 @@ const htmlContent = (errorMsg = '') => `
 
     <button type="submit">GO!</button>
   </form>
-  `
+`
 
 module.exports = {template, htmlContent}
