@@ -1,4 +1,4 @@
-const express = require('xpress')
+const express = require('express')
 const userRoutes = express.Router()
 const {template, htmlContent} = require('./htmlUtils')
 
