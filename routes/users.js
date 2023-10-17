@@ -7,14 +7,14 @@ const {template, htmlContent} = require('./htmlUtils')
 const users = require('../data/fakeUsers')
 
 
-userRoutes.get('/list', (req,res)=>{
+userRoutes.get('/users', (req,res)=>{
     const userList = users.map(users => 
         `<li><a href="/detail/${users.id}">${users.firstName} ${users.lastName}</a></li>`
     )
 
     const content = `<ul>${userList.join('')}</ul>`
 
-    res.send(template('List', content))
+    res.send(template('Users', content))
 })
 
 userRoutes.get('/detail/:id', (req, res) => {
