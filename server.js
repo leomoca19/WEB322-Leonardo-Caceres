@@ -8,5 +8,4 @@ const PORT = 8080
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(routes)
 
-
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`))
