@@ -8,13 +8,13 @@ const users = require('../data/fakeUsers')
 
 userRoutes.get('/', (req,res)=>{
     const userList = users.map(users => 
-        `<li><a href="/${users.id}">${users.firstName} ${users.lastName}</a></li>`
+        `<li><a href="/users/${users.id}">${users.firstName} ${users.lastName}</a></li>`
     )
 
     res.send(template('Users', `<ul>${userList.join('')}</ul>`))
 })
 
-userRoutes.get('/:id', (req, res) => {
+userRoutes.get('/users/:id', (req, res) => {
     const id = req.params.id
     const user = users.find(user => user.id == id)
 
