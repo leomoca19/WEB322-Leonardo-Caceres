@@ -1,6 +1,10 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+
 const app = express()
 const PORT = 8080
+
+app.use(bodyParser.json())
 
 //Data structure
 const users = require('./data/fakeUsers')
@@ -8,11 +12,11 @@ const users = require('./data/fakeUsers')
 
 //Home menu
 const menu =
- `<nav>
+    `<nav>
         <a href="/">Home</a>
         &nbsp;|&nbsp;
         <a href="/list">List</a>
-    </div>`
+    </nav>`
 
 //Bootstrap middleware
 const template = (title, html) => 
@@ -35,25 +39,34 @@ const template = (title, html) =>
 
 //Routes 
 {
-    app.get('/', (req, res)=>{
-        const content = 
+    const loginContent = (errorMsg = '') =>
         `<form method="POST">
-            <label for="username">Name: </label>
-            <input type="text" name="username" />
+            <div>${errorMsg}</div>
             <br>
 
-            <label for="password">Password: </label>
-            <input type="password" name="password" />
+            Name:&emsp;&emsp; 
+            <input type="text" name="username"/>
+            <br>
+
+            Password:&nbsp;&nbsp; 
+            <input type="password" name="password"/>
             <br>
 
             <button type="submit">GO!</button>
         </form>`
-        
-        res.send(template('Login', content))
+
+    app.get('/', (req, res)=>{
+        res.send(template('Login', loginContent()))
     })
     app.post('/', (req, res)=>{
+        const {username, password} = req.body
+        console.log(`user ${username} | pass ${password}`)
 
-        res.redirect('/list')
+        //change later for email and password from dbs
+        if (username === 'admin' && password === 'admin')
+            res.redirect('/list')
+        else
+            res.send(template('Login', loginContent('Invalid credentials. Please try again')))
     })
 
     app.get('/list', (req,res)=>{
