@@ -11,18 +11,15 @@ userRoutes.get('/', (req,res)=>{
         `<li><a href="/${users.id}">${users.firstName} ${users.lastName}</a></li>`
     )
 
-    const content = `<ul>${userList.join('')}</ul>`
-
-    res.send(template('Users', content))
+    res.send(template('Users', `<ul>${userList.join('')}</ul>`))
 })
 
 userRoutes.get('/:id', (req, res) => {
     const id = req.params.id
     const user = users.find(user => user.id == id)
 
-    const content = 
-        `<div>${id} ${user.firstName} ${user.lastName}</div>`
-    res.send(template('Details', content))
+    res.send(template('Details', 
+        `<div>${id} ${user.firstName} ${user.lastName}</div>`))
 })
 
 module.exports = userRoutes
