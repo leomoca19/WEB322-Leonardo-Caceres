@@ -18,7 +18,7 @@ const template = (title, html) =>
       </html>`
 
       
-const content = (errorMsg = '') =>
+const htmlContent = (errorMsg = '') =>
 `<form method="POST">
     <div>${errorMsg}</div>
     <br>
@@ -34,4 +34,4 @@ const content = (errorMsg = '') =>
     <button type="submit">GO!</button>
 </form>`
 
-module.exports = {template, content}
+module.exports = {template, htmlContent}
