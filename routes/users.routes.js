@@ -1,11 +1,8 @@
 const express = require("express");
 const userRoutes = express.Router();
 
-const bodyParser = require('body-parser')
-
-userRoutes.use(bodyParser.urlencoded({ extended: true }))
-
-
+//Data structure
+const users = require('../data/fakeUsers')
 
 //Home menu
 const menu =
@@ -62,6 +59,25 @@ userRoutes.post('/', (req, res)=>{
         res.redirect('/list')
     else
         res.send(template('Login', loginContent('Invalid credentials. Please try again')))
+})
+
+userRoutes.get('/list', (req,res)=>{
+    const userList = users.map(users => 
+        `<li><a href="/detail/${users.id}">${users.firstName} ${users.lastName}</a></li>`
+    )
+
+    const content = `<ul>${userList.join('')}</ul>`
+
+    res.send(template('List', content))
+})
+
+userRoutes.get('/detail/:id', (req, res) => {
+    const id = req.params.id
+    const user = users.find(user => user.id == id)
+
+    const content = 
+        `<div>${id} ${user.firstName} ${user.lastName}</div>`
+    res.send(template('Detail', content))
 })
 
 module.exports = userRoutes
