@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const PORT = 8080
 
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //Data structure
 const users = require('./data/fakeUsers')
