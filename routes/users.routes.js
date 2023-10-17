@@ -1,6 +1,12 @@
 const express = require("express");
 const userRoutes = express.Router();
 
+const bodyParser = require('body-parser')
+
+userRoutes.use(bodyParser.urlencoded({ extended: true }))
+
+
+
 //Home menu
 const menu =
     `<nav>
