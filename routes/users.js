@@ -6,8 +6,9 @@ const {template, htmlContent} = require('./htmlUtils')
 //Data structure
 const users = require('../data/fakeUsers')
 
-
+console.log('users here')
 userRoutes.get('/users', (req,res)=>{
+    console.log('here too')
     const userList = users.map(users => 
         `<li><a href="/detail/${users.id}">${users.firstName} ${users.lastName}</a></li>`
     )
