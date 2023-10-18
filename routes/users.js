@@ -11,7 +11,8 @@ userRoutes.get('/', (req,res)=>{
         `<li><a href="/${users.id}">${users.firstName} ${users.lastName}</a></li>`
     )
 
-    res.send(template('Users', `<ul>${userList.join('')}</ul>`))
+    res.send(template('Users', 
+        `<ul>${userList.slice(0, 25).join('')}</ul>`))
 })
 
 userRoutes.get('/:id', (req, res) => {
