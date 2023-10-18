@@ -35,15 +35,6 @@ userRoutes.get('/:id', (req, res) => {
     const id = req.params.id
     const user = users.find(user => user.id == id)
 
-    console.log(
-        user.id,
-        user.firstName,
-        user.lastName,
-        user.email,
-        user.dob,
-        user.company,
-        user.phone)
-
     const table = `
         <table class="user-table">
         <tbody>
