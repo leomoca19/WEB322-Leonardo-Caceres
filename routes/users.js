@@ -7,12 +7,28 @@ const {template} = require('./htmlUtils')
 const users = require('../data/fakeUsers')
 
 userRoutes.get('/', (req,res)=>{
-    const userList = users.map(users => 
-        `<li><a href="/users/${users.id}">${users.firstName} ${users.lastName}</a></li>`
-    )
+    const userList = users.map(users => `
+        <tr>
+            <td>${users.id}</td>
+            <td><a href="/users/${users.id}">${users.firstName} ${users.lastName}</a></td>
+        </tr>
+    `)
 
-    res.send(template('Users', 
-        `<ul>${userList.slice(0, 25).join('')}</ul>`))
+    const table = `
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${userList.slice(0, 25).join('')}
+            </tbody>
+        </table>
+    `
+
+    res.send(template('Users', table))
 })
 
 userRoutes.get('/:id', (req, res) => {
