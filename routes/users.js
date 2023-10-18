@@ -15,7 +15,7 @@ userRoutes.get('/', (req,res)=>{
     `)
 
     const table = `
-        <table>
+        <table class="user-table">
             <thead>
                 <tr>
                     <th>ID</th>
