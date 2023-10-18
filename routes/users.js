@@ -35,33 +35,50 @@ userRoutes.get('/:id', (req, res) => {
     const id = req.params.id
     const user = users.find(user => user.id == id)
 
+    console.log(
+        user.id,
+        user.firstName,
+        user.lastName,
+        user.email,
+        user.dob,
+        user.company,
+        user.phone)
+
     const table = `
         <table class="user-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>email</th>
-                    <th>Birth date</th>
-                    <th>Company</th>
-                    <th>Phone</th>
-                </tr>
-            </thead>
-            <tbody>
+        <tbody>
+            <tr>
+                <th>ID:</th>
                 <td>${user.id}</td>
+            </tr>
+            <tr>
+                <th>First Name:</th>
                 <td>${user.firstName}</td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
                 <td>${user.lastName}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
                 <td>${user.email}</td>
+            </tr>
+            <tr>
+                <th>Birth Date:</th>
                 <td>${user.dob}</td>
+            </tr>
+            <tr>
+                <th>Company:</th>
                 <td>${user.company}</td>
+            </tr>
+            <tr>
+                <th>Phone:</th>
                 <td>${user.phone}</td>
-            </tbody>
-        </table>
+            </tr>
+        </tbody>
     `
 
-    res.send(template('Details', 
-        `<div>${id} ${user.firstName} ${user.lastName}</div>`))
+    res.send(template('Details', table))
 })
 
 module.exports = userRoutes
