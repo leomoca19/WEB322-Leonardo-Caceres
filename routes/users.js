@@ -1,6 +1,6 @@
 const express = require('express')
 const userRoutes = express.Router()
-const {template, htmlContent} = require('./htmlUtils')
+const {template} = require('./htmlUtils')
 
 
 //Data structure
