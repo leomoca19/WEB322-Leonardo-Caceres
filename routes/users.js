@@ -8,7 +8,7 @@ const users = require('../data/fakeUsers')
 
 userRoutes.get('/', (req,res)=>{
     const userList = users.map(users => 
-        `<li><a href="/${users.id}">${users.firstName} ${users.lastName}</a></li>`
+        `<li><a href="/users/${users.id}">${users.firstName} ${users.lastName}</a></li>`
     )
 
     res.send(template('Users', 
