@@ -35,6 +35,31 @@ userRoutes.get('/:id', (req, res) => {
     const id = req.params.id
     const user = users.find(user => user.id == id)
 
+    const table = `
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>email</th>
+                    <th>Birth date</th>
+                    <th>Company</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>${user.id}</td>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.email}</td>
+                <td>${user.dob}</td>
+                <td>${user.company}</td>
+                <td>${user.phone}</td>
+            </tbody>
+        </table>
+    `
+
     res.send(template('Details', 
         `<div>${id} ${user.firstName} ${user.lastName}</div>`))
 })
