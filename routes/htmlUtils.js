@@ -36,4 +36,38 @@ const htmlContent = (errorMsg = '') => `
   </form>
 `
 
-module.exports = {template, htmlContent}
+const userDetails = (user) => `
+  <table class="user-table">
+  <tbody>
+      <tr>
+          <th>ID:</th>
+          <td>${user.id}</td>
+      </tr>
+      <tr>
+          <th>First Name:</th>
+          <td>${user.firstName}</td>
+      </tr>
+      <tr>
+          <th>Last Name:</th>
+          <td>${user.lastName}</td>
+      </tr>
+      <tr>
+          <th>Email:</th>
+          <td>${user.email}</td>
+      </tr>
+      <tr>
+          <th>Birth Date:</th>
+          <td>${user.dob}</td>
+      </tr>
+      <tr>
+          <th>Company:</th>
+          <td>${user.company}</td>
+      </tr>
+      <tr>
+          <th>Phone:</th>
+          <td>${user.phone}</td>
+      </tr>
+  </tbody>
+`
+
+module.exports = {template, htmlContent, userDetails}
