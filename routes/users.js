@@ -1,6 +1,6 @@
 const express = require('express')
 const userRoutes = express.Router()
-const {template} = require('./htmlUtils')
+const {template, userDetails} = require('./htmlUtils')
 
 
 //Data structure
@@ -35,41 +35,7 @@ userRoutes.get('/:id', (req, res) => {
     const id = req.params.id
     const user = users.find(user => user.id == id)
 
-    const table = `
-        <table class="user-table">
-        <tbody>
-            <tr>
-                <th>ID:</th>
-                <td>${user.id}</td>
-            </tr>
-            <tr>
-                <th>First Name:</th>
-                <td>${user.firstName}</td>
-            </tr>
-            <tr>
-                <th>Last Name:</th>
-                <td>${user.lastName}</td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td>${user.email}</td>
-            </tr>
-            <tr>
-                <th>Birth Date:</th>
-                <td>${user.dob}</td>
-            </tr>
-            <tr>
-                <th>Company:</th>
-                <td>${user.company}</td>
-            </tr>
-            <tr>
-                <th>Phone:</th>
-                <td>${user.phone}</td>
-            </tr>
-        </tbody>
-    `
-
-    res.send(template('Details', table))
+    res.send(template('Details', userDetails(user)))
 })
 
 module.exports = userRoutes
