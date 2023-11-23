@@ -1,6 +1,5 @@
 const express = require('express')
 const apiUsers = express.Router()
-const {template, userDetails} = require('../htmlUtils')
 
 const users = require('../../data/fakeUsers')
 
