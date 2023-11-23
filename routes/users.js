@@ -1,41 +1,41 @@
-// const express = require('express')
-// const userRoutes = express.Router()
-// const {template, userDetails} = require('./htmlUtils')
+const express = require('express')
+const userRoutes = express.Router()
+const {template, userDetails} = require('./htmlUtils')
 
 
-// //Data structure
-// const users = require('../data/fakeUsers')
+//Data structure
+const users = require('../data/fakeUsers')
 
-// userRoutes.get('/', (req,res)=>{
-//     const userList = users.map(users => `
-//         <tr>
-//             <td>${users.id}</td>
-//             <td><a href="/users/${users.id}">${users.firstName} ${users.lastName}</a></td>
-//         </tr>
-//     `)
+userRoutes.get('/', (req,res)=>{
+    const userList = users.map(users => `
+        <tr>
+            <td>${users.id}</td>
+            <td><a href="/users/${users.id}">${users.firstName} ${users.lastName}</a></td>
+        </tr>
+    `)
 
-//     const table = `
-//         <table class="user-table">
-//             <thead>
-//                 <tr>
-//                     <th>ID</th>
-//                     <th>Name</th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 ${userList.slice(0, 25).join('')}
-//             </tbody>
-//         </table>
-//     `
+    const table = `
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${userList.slice(0, 25).join('')}
+            </tbody>
+        </table>
+    `
 
-//     res.send(template('Users', table))
-// })
+    res.send(template('Users', table))
+})
 
-// userRoutes.get('/:id', (req, res) => {
-//     const id = req.params.id
-//     const user = users.find(user => user.id == id)
+userRoutes.get('/:id', (req, res) => {
+    const id = req.params.id
+    const user = users.find(user => user.id == id)
 
-//     res.send(template('Details', userDetails(user)))
-// })
+    res.send(template('Details', userDetails(user)))
+})
 
-// module.exports = userRoutes
+module.exports = userRoutes
