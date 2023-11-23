@@ -10,7 +10,7 @@ const template = (title, html) => `
     </head>
     <body class="container">
       <nav>
-          <a href="/">Home</a>&nbsp;|&nbsp;<a href="/users">Users</a>&nbsp;|&nbsp;<a href="/products>Products</a>
+          <a href="/">Home</a>&nbsp;|&nbsp;<a href="/users">Users</a>&nbsp;|&nbsp; <a href="/products">Products</a>
       </nav>    
       <h1>${title}</h1>
       <div>${html}</div> 
