@@ -5,7 +5,7 @@ const {template, userDetails} = require('../htmlUtils')
 const users = require('../../data/fakeUsers')
 
 apiUsers.get('/', (req, res) => 
-    res.send(template('Users', JSON.stringify(users)))
+    res.send(users)
 )
 
 apiUsers.get('/:id', (req,res) =>{
