@@ -11,7 +11,7 @@ loginRoutes.post('/', (req, res)=>{
 
     //change later for email and password from dbs
     if (username === 'admin' && password === 'admin')
-        res.redirect('/api/users')
+        res.redirect('/users')
     else
         res.send(template('Login', htmlContent('Invalid credentials. Please try again')))
 })
