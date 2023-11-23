@@ -7,8 +7,8 @@ const apiRoutes = express.Router()
 
 
 // apiRoutes.use('/api/login', apiLogin)
-apiRoutes.use('/api/users', apiUsers)
-apiRoutes.use('/api/products', apiProducts)
+apiRoutes.use('/users', apiUsers)
+apiRoutes.use('/products', apiProducts)
 
 
 module.exports = apiRoutes
