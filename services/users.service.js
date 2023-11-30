@@ -7,6 +7,9 @@ class UsersService{
     static findById = (id) => 
         users.find((user) => user.id == id)
 
+    static findByEmail = (email) => 
+        users.find((user) => user.email == email)
+
     static create = (newUser) => {
         users.push(newUser)
         return users[users.length - 1]
