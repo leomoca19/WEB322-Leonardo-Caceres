@@ -12,7 +12,7 @@ loginRoutes.post('/', (req, res)=>{
     const {username, password} = req.body
     const authentication = 
         AuthenticationService.authenticate(username, password)
-    
+    // finish later, use password and username, imporve service
     if (authentication.isAutheticated)
         res.redirect('/users')
     else
