@@ -3,7 +3,7 @@ const apiLogin = express.Router()
 
 const users = require('../../data/fakeUsers')
 
-apiProducts.post('/', (req, res) => {
+apiLogin.post('/', (req, res) => {
     let {email, isAdmin} = {...req.body}
 
     let status = 200
