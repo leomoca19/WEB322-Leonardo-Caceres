@@ -1,6 +1,6 @@
 const express = require('express')
 
-const apiLogin = require('.models/login')
+const apiLogin = require('./models/login')
 const apiUsers = require('./models/users')
 const apiProducts = require('./models/products')
 
