@@ -1,15 +1,20 @@
 const express = require('express')
 const apiLogin = express.Router()
 
-const users = require('../../data/fakeUsers')
+const UsersService = require('../../services/users.service')
+const AuthenticationService = require('../../services/authentication.service')
+
+const users = UsersService.findAll()
 
 apiLogin.post('/', (req, res) => {
-    let {email, isAdmin} = {...req.body}
+    let {email} = {...req.body}
 
     let status = 200
     let result = {isAuthenticated: false}
 
-    if (!users.find(user => user.email == email && user.isAdmin == isAdmin)) 
+    let foundUser = UsersService.findByEmail(email)
+
+    if (foundUser && foundUser.isAuthenticated) 
     {
         result = {isAuthenticated: true}
         status = 401
