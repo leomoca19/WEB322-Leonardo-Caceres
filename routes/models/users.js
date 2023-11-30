@@ -16,11 +16,9 @@ apiUsers.delete('/:id', (req,res) =>
      id != UsersService.findById(req.params.id).id)
 )
 
-apiUsers.post('/', (req,res) =>{
-    let newUser = {...req.body}
-    users.push(newUser)
-    res.send(newUser)
-})
+apiUsers.post('/', (req,res) => 
+    res.send(UsersService.create({...req.body})) // check if works
+)
 
 
 module.exports = apiUsers
