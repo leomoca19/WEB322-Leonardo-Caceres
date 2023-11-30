@@ -1,18 +1,17 @@
 const express = require('express')
 const apiUsers = express.Router()
-const {template, userDetails} = require('../htmlUtils')
 
 const users = require('../../data/fakeUsers')
 
 apiUsers.get('/', (req, res) => 
-    res.send(template('Users', JSON.stringify(users)))
+    res.send(users)
 )
 
 apiUsers.get('/:id', (req,res) =>{
     const id = req.params.id
     const user = users.find(user => user.id == id)
 
-    res.send(template('Details', userDetails(user)))
+    res.send(user)
 })
 
 apiUsers.delete('/:id', (req,res) =>{
@@ -25,7 +24,8 @@ apiUsers.delete('/:id', (req,res) =>{
 apiUsers.post('/', (req,res) =>{
     let newUser = {...req.body} //verify if works as expected
     users.push(newUser)
-    res.json.stringify(newUser)
+    res.send(newUser)
 })
+
 
 module.exports = apiUsers
