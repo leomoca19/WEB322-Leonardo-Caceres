@@ -4,13 +4,14 @@ const {template, userDetails} = require('./htmlUtils')
 
 
 //Data structure
-const users = require('../data/fakeUsers')
+const UsersService = require('../services/users.service')
+const users = UsersService.findAll()
 
 userRoutes.get('/', (req,res)=>{
-    const userList = users.map(users => `
+    const userList = users.map(user => `
         <tr>
-            <td>${users.id}</td>
-            <td><a href="/users/${users.id}">${users.firstName} ${users.lastName}</a></td>
+            <td>${user.id}</td>
+            <td><a href="/users/${user.id}">${user.firstName} ${user.lastName}</a></td>
         </tr>
     `)
 
@@ -31,11 +32,8 @@ userRoutes.get('/', (req,res)=>{
     res.send(template('Users', table))
 })
 
-userRoutes.get('/:id', (req, res) => {
-    const id = req.params.id
-    const user = users.find(user => user.id == id)
-
-    res.send(template('Details', userDetails(user)))
-})
+userRoutes.get('/:id', (req, res) => 
+    res.send(template('Details', userDetails(UsersService.findById(req.params.id))))
+)
 
 module.exports = userRoutes
