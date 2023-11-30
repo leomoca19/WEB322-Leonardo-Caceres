@@ -7,9 +7,9 @@ apiProducts.post('/', (req, res) => {
     let {email, isAdmin} = {...req.body}
 
     let status = 200
-    let result = {isAuthenticated: true}
+    let result = {isAuthenticated: false}
 
-    if (!users.find(user => user.email == email && user.isAdmin == isAdmin))
+    if (!users.find(user => user.email == email && user.isAdmin == isAdmin)) 
     {
         result = {isAuthenticated: true}
         status = 401
