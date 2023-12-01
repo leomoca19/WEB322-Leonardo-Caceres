@@ -1,27 +1,28 @@
-const { log } = require('console')
-const users = require('../data/fakeUsers.json')
+const {users} = require('../db')
 
 class UsersService{
-    static findAll = () => users
+    static findAll = async () => await users.findAll()
 
-    static findById = (id) => 
-        users.find((user) => user.id == id)
+    static findById = async (id) => await users.findByPk(id)
 
-    static findByEmail = (email) => 
-        users.find((user) => user.email == email)
+    static findByEmail = async (email) => 
+        await users.find((user) => user.email == email)
 
-    static findByUsername = (username) =>
-        users.find((user) => 
+    static findByUsername = async (username) =>
+        await users.find((user) => 
             `${user.firstName} ${user.lastName}` == username)
 
-    static create = (newUser) => {
-        users.push(newUser)
-        return users[users.length - 1]
+    static create = async (user) => await users.create(user)
+
+    static update = async (user) => {
+        let savedUser = await users.findByPk(user.id)
+        Object.assign(savedUser, user)
+        await savedUser.save()
+        return savedUser
     }
 
-    static delete = (id) => 
-        users.filter((id) =>
-            id != UsersService.findById(id).id)
+    static delete = async (id) => 
+        await users.destroy({ where: { id } })
 }
 
 module.exports = UsersService
