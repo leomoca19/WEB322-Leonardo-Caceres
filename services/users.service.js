@@ -1,28 +1,30 @@
 const {users} = require('../db')
 
 class UsersService{
-    static findAll = async () => await users.findAll()
+    static findAll = async () => users.findAll()
 
-    static findById = async (id) => await users.findByPk(id)
+    static findById = async (id) => users.findByPk(id)
 
-    static findByEmail = async (email) => 
-        await users.find((user) => user.email == email)
+    static findByEmail = async (email) => users.findOne({ where: { email }})
 
-    static findByUsername = async (username) =>
-        await users.find((user) => 
-            `${user.firstName} ${user.lastName}` == username)
+    // username is the full name of the user fname + ' ' + lname
+    static findByUsername = async (username) => 
+        users.findOne({ where: { 
+            firstName: username.split(' ')[0],
+            lastName: username.split(' ')[1]
+        }
+    })
 
-    static create = async (user) => await users.create(user)
+    static create = async (user) => users.create(user)
 
-    static update = async (user) => {
-        let savedUser = await users.findByPk(user.id)
-        Object.assign(savedUser, user)
-        await savedUser.save()
-        return savedUser
-    }
+    static update = async (user) =>
+        users.update(user, { where: {
+            id: user.id 
+        }, 
+        returning: true,
+    })
 
-    static delete = async (id) => 
-        await users.destroy({ where: { id } })
+    static delete = async (id) => users.destroy({ where: { id } })
 }
 
 module.exports = UsersService
