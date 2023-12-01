@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize')
+const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = 
+    require('./neontech.credentials')
 
 // set up sequelize to point to postgres database
-let sequelize = new Sequelize('neondb', 'leomoca19', '5O4lcByxPMep', {
-    host: 'ep-sparkling-bird-59202610-pooler.us-east-2.aws.neon.tech',
+let sequelize = new Sequelize(PGDATABASE, PGUSER, PGPASSWORD, {
+    host: PGHOST,
     dialect: 'postgres',
     port: 5432,
     dialectOptions: {
