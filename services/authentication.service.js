@@ -1,11 +1,13 @@
+// const { use } = require("../routes/login")
+const UsersService = require("./users.service")
+
 class AuthenticationService {
   static authenticate = (username, password) => {
-    let authenticated = { isAutheticated: false}
-    
-    if(true /*user is admin or username macthes user password*/)
-      authenticated = { isAutheticated: true}
+    let user = UsersService.findByUsername(username)
 
-   return authenticated
+    return  (user.isAdmin || user.password == password)
+      ? { isAutheticated: true }
+      : { isAutheticated: false }
 }}
 
 module.exports = AuthenticationService;
