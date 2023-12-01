@@ -14,6 +14,12 @@ class UsersService{
         users.push(newUser)
         return users[users.length - 1]
     }
+
+    static delete = (id) => 
+        users.filter((id) =>
+            id != UsersService.findById(id).id)
+    
+
 }
 
 module.exports = UsersService
