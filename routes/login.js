@@ -10,10 +10,8 @@ loginRoutes.get('/', (req, res)=>{
 
 loginRoutes.post('/', (req, res)=>{
     const {username, password} = req.body
-    const authentication = 
-        AuthenticationService.authenticate(username, password)
         
-    if (authentication.isAutheticated)
+    if (AuthenticationService.authenticate(username, password))
         res.redirect('/users')
     else
         res.send(template('Login', htmlContent('Invalid credentials. Please try again')))
