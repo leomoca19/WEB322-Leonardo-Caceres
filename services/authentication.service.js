@@ -1,4 +1,3 @@
-// const { use } = require("../routes/login")
 const UsersService = require("./users.service")
 
 class AuthenticationService {
