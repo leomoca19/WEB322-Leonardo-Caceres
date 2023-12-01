@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-// set up sequelize to point to our postgres database
+// set up sequelize to point to postgres database
 let sequelize = new Sequelize('neondb', 'leomoca19', '5O4lcByxPMep', {
     host: 'ep-sparkling-bird-59202610-pooler.us-east-2.aws.neon.tech',
     dialect: 'postgres',
@@ -13,7 +13,7 @@ let sequelize = new Sequelize('neondb', 'leomoca19', '5O4lcByxPMep', {
 
 
 //Tables
-const user = sequelize.define('User', {
+const user = sequelize.define('users', {
     firstName: Sequelize.STRING,
     lastName: Sequelize.STRING,
     email: Sequelize.STRING,
@@ -23,14 +23,14 @@ const user = sequelize.define('User', {
     phone: Sequelize.STRING,
 })
 
-const product = sequelize.define('Product', {
+const product = sequelize.define('products', {
     name: Sequelize.STRING,
     isbn: Sequelize.STRING,
     price: Sequelize.DECIMAL,
     description: Sequelize.STRING,
 })
 
-const order = sequelize.define('Order', {
+const order = sequelize.define('orders', {
     date: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
@@ -61,7 +61,7 @@ const connect = async () => {
 
 const sync = async () => {
     try {
-        await sequelize.sync()
+        await sequelize.sync({alter: true})
         console.log('Models synchronized with the db.')
     } catch (err) {
         console.error('Error syncing models with the database:', err)
