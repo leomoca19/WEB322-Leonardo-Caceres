@@ -14,7 +14,6 @@ class UsersService{
         users.find((user) => 
             `${user.firstName} ${user.lastName}` == username)
 
-
     static create = (newUser) => {
         users.push(newUser)
         return users[users.length - 1]
@@ -23,8 +22,6 @@ class UsersService{
     static delete = (id) => 
         users.filter((id) =>
             id != UsersService.findById(id).id)
-    
-
 }
 
 module.exports = UsersService
