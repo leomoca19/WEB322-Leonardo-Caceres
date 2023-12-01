@@ -13,7 +13,7 @@ let sequelize = new Sequelize('neondb', 'leomoca19', '5O4lcByxPMep', {
 
 
 //Tables
-const Users = sequelize.define('Users', {
+const user = sequelize.define('User', {
     firstName: Sequelize.STRING,
     lastName: Sequelize.STRING,
     email: Sequelize.STRING,
@@ -23,14 +23,14 @@ const Users = sequelize.define('Users', {
     phone: Sequelize.STRING,
 })
 
-const Products = sequelize.define('Products', {
+const product = sequelize.define('Product', {
     name: Sequelize.STRING,
     isbn: Sequelize.STRING,
     price: Sequelize.DECIMAL,
     description: Sequelize.STRING,
 })
 
-const Orders = sequelize.define('Orders', {
+const order = sequelize.define('Order', {
     date: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
@@ -72,7 +72,7 @@ const sync = async () => {
 module.exports = {
     connect,
     sync,
-    Users,
-    Products,
-    Orders
+    user,
+    product,
+    order
 }
