@@ -12,8 +12,7 @@ apiUsers.get('/:id', (req,res) =>
 )
 
 apiUsers.delete('/:id', (req,res) =>
-    users.filter((id) =>
-     id != UsersService.findById(req.params.id).id)
+    res.send(UsersService.delete(id))
 )
 
 apiUsers.post('/', (req,res) => 
