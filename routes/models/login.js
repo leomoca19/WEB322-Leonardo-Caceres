@@ -2,7 +2,6 @@ const express = require('express')
 const apiLogin = express.Router()
 
 const UsersService = require('../../services/users.service')
-const AuthenticationService = require('../../services/authentication.service')
 
 const users = UsersService.findAll()
 
