@@ -10,6 +10,11 @@ class UsersService{
     static findByEmail = (email) => 
         users.find((user) => user.email == email)
 
+    static findByUsername = (username) =>
+        users.find((user) => 
+            `${user.firstName} ${user.lastName}` == username)
+
+
     static create = (newUser) => {
         users.push(newUser)
         return users[users.length - 1]
