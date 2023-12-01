@@ -1,25 +1,12 @@
 const express = require('express')
 const apiLogin = express.Router()
 
-const UsersService = require('../../services/users.service')
-
-const users = UsersService.findAll()
+const AuthenticationService = require('../../services/authentication.service')
 
 apiLogin.post('/', (req, res) => {
-    let {email} = {...req.body}
-
-    let status = 200
-    let result = {isAuthenticated: false}
-
-    let foundUser = UsersService.findByEmail(email)
-
-    if (foundUser && foundUser.isAuthenticated) 
-    {
-        result = {isAuthenticated: true}
-        status = 401
-    }
-
-   res.status(status).send(result)
+    let {username, password} = req.body
+    let result = AuthenticationService.authenticate(username, password)
+    res.status((result) ? 200 : 401).send(result)
 })
 
 module.exports = apiLogin
