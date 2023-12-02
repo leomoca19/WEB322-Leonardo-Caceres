@@ -10,7 +10,6 @@ loginRoutes.get('/', (req, res)=>
 
 loginRoutes.post('/', (req, res)=>{
     let { username, password } = req.body
-    
 
     let user = users.find((user) => 
         `${user.firstName} ${user.lastName}` == username
