@@ -2,6 +2,9 @@ const Sequelize = require('sequelize')
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = 
     require('./neontech.credentials')
 
+// populate the database, will remain comented after 1 execution
+const { seedDatabase } = require('./data/db.population')
+
 // set up sequelize to point to postgres database
 let sequelize = new Sequelize(PGDATABASE, PGUSER, PGPASSWORD, {
     host: PGHOST,
@@ -64,6 +67,7 @@ const connect = async () => {
 const sync = async () => {
     try {
         await sequelize.sync({alter: true})
+        await seedDatabase()
         console.log('Models synchronized with the db.')
     } catch (err) {
         console.error('Error syncing models with the database:', err)
