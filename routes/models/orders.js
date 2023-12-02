@@ -4,19 +4,19 @@ const apiOrders = express.Router()
 const OrdersService = require('../../services/orders.service')
 
 apiOrders.get('/', async (req, res) => 
-    res.send(await OrdersService.findAll())
+    res.json(await OrdersService.findAll())
 )
 
 apiOrders.get('/:id', async (req,res) =>
-    res.send(await OrdersService.findById(req.params.id))
+    res.json(await OrdersService.findById(req.params.id))
 )
 
 apiOrders.delete('/:id', async (req,res) =>
-    res.send(await OrdersService.delete(req.params.id))
+    res.json(await OrdersService.delete(req.params.id))
 )
 
 apiOrders.post('/', async (req,res) => 
-    res.send(await OrdersService.create({...req.body}))
+    res.json(await OrdersService.create({...req.body}))
 )
 
 
