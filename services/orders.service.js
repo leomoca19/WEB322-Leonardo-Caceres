@@ -17,4 +17,4 @@ class OrdersService {
     static delete = async (id) => orders.destroy({ where: { id } })
 }
 
-moudule.exports = OrdersService
+module.exports = OrdersService
