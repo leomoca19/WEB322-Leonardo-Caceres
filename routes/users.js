@@ -4,8 +4,7 @@ const {template, userDetails} = require('./htmlUtils')
 
 
 //Data structure
-const UsersService = require('../services/users.service')
-const users = UsersService.findAll()
+const users = require('../data/fakeUsers.json')
 
 userRoutes.get('/', (req,res)=>{
     const userList = users.map(user => `
