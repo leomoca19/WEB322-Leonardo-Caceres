@@ -1,4 +1,4 @@
-const {users} = require('../db')
+const { users, orders } = require('../db')
 
 class UsersService{
     static findAll = async () => users.findAll()
