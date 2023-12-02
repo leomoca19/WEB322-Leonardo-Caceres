@@ -6,6 +6,9 @@ const { connect, sync } = require("./db");
 const app = express()
 const PORT = 8080
 
+// necesary for reading data from req.body, used in login
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 async function init() {
