@@ -1,3 +1,5 @@
+const { users, products, orders } = require('../db')
+
 const seedDatabase = async () => {
     try {
         // Populate the Users table
