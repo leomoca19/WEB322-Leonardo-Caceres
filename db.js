@@ -52,7 +52,7 @@ products.hasMany(orders)
 orders.belongsTo(products)
 
 
-// Table population (collapse it for reading sake)
+// Table population 
 const seedDatabase = async () => {
     try {
         // Populate the Users table
@@ -201,7 +201,9 @@ const connect = async () => {
 
 const sync = async () => {
     try {
-        await seedDatabase()
+        // will remain commented after being populated
+        // await seedDatabase()
+
         await sequelize.sync({alter: true})
         console.log('Models synchronized with the db.')
     } catch (err) {
