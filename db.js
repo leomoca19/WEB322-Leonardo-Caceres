@@ -2,8 +2,6 @@ const Sequelize = require('sequelize')
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = 
     require('./neontech.credentials')
 
-// populate the database, will remain comented after 1 execution
-const { seedDatabase } = require('./data/db.population')
 
 // set up sequelize to point to postgres database
 let sequelize = new Sequelize(PGDATABASE, PGUSER, PGPASSWORD, {
