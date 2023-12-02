@@ -5,6 +5,8 @@ class UsersService{
 
     static findById = async (id) => users.findByPk(id)
 
+    static findByIdWithOrders = async (id) => users.findByPk(id, { include: orders })
+    
     static findByEmail = async (email) => users.findOne({ where: { email }})
 
     // username is the full name of the user fname + ' ' + lname
