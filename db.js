@@ -44,11 +44,11 @@ const orders = sequelize.define('orders', {
 
 
 //Table assosiations
-// Users.hasMany(Orders)
-// Orders.belongsTo(Users)
+Users.hasMany(Orders)
+Orders.belongsTo(Users)
 
-// Products.hasMany(Orders)
-// Orders.belongsTo(Products)
+Products.hasMany(Orders)
+Orders.belongsTo(Products)
 
 
 const connect = async () => {
