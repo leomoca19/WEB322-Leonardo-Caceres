@@ -17,11 +17,11 @@ apiUsers.get('/:id', async (req, res) => {
 })
 
 apiUsers.delete('/:id', async (req,res) =>
-    res.send(await UsersService.delete(req.params.id))
+    res.json(await UsersService.delete(req.params.id))
 )
 
 apiUsers.post('/', async (req,res) => 
-    res.send(await UsersService.create({...req.body})) 
+    res.json(await UsersService.create({...req.body})) 
 )
 
 
