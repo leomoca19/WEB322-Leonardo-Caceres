@@ -201,8 +201,8 @@ const connect = async () => {
 
 const sync = async () => {
     try {
-        await sequelize.sync({alter: true})
         await seedDatabase()
+        await sequelize.sync({alter: true})
         console.log('Models synchronized with the db.')
     } catch (err) {
         console.error('Error syncing models with the database:', err)
