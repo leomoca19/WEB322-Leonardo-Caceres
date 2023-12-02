@@ -1,31 +1,23 @@
 const express = require('express')
 const apiProducts = express.Router()
 
-const products = require('../../data/fakeProducts')
+const ProductsService = require('../../services/product.service')
 
-apiProducts.get('/', (req, res) => 
-    res.send(products)
+apiProducts.get('/', async (req, res) => 
+    res.json(await ProductsService.findAll())
 )
 
-apiProducts.get('/:id', (req,res) =>{
-    const id = req.params.id
-    const product = products.find(product => product.id == id)
+apiProducts.get('/:id', async (req, res) =>
+    res.json(await ProductsService.findById(req.params.id))
+)
 
-    res.send(product)
-})
+apiProducts.delete('/:id', async (req, res) =>
+    res.json(await ProductsService.delete(req.params.id))
+)
 
-apiProducts.delete('/:id', (req,res) =>{
-    const id = req.params.id
-    const product = products.find(product => product.id == id)
-
-    products.filter((id) => id != product.id)
-})
-
-apiProducts.post('/', (req,res) =>{
-    let newProduct = {...req.body} //verify if works as expected
-    products.push(newProduct)
-    res.send(newProduct)
-})
+apiProducts.post('/', async (req, res) =>
+    res.json(await ProductsService.create({...req.body}))
+)
 
 
 module.exports = apiProducts
