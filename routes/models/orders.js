@@ -12,7 +12,7 @@ apiOrders.get('/:id', (req,res) =>
 )
 
 apiOrders.delete('/:id', (req,res) =>
-    res.send(OrdersService.delete(id))
+    res.send(OrdersService.delete(req.params.id))
 )
 
 apiOrders.post('/', (req,res) => 

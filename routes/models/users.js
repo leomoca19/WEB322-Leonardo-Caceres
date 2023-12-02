@@ -12,11 +12,11 @@ apiUsers.get('/:id', (req,res) =>
 )
 
 apiUsers.delete('/:id', (req,res) =>
-    res.send(UsersService.delete(id))
+    res.send(UsersService.delete(req.params.id))
 )
 
 apiUsers.post('/', (req,res) => 
-    res.send(UsersService.create({...req.body})) // check if works
+    res.send(UsersService.create({...req.body})) 
 )
 
 
