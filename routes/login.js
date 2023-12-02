@@ -9,12 +9,14 @@ loginRoutes.get('/', (req, res)=>
 )
 
 loginRoutes.post('/', (req, res)=>{
-    let {username, password} = req.body
+    let { username, password } = req.body
     
-    let user = users.find((user) => user.username == username)
 
-    if (username === 'admin' && password === 'admin' 
-        || user && (user.password == password))
+    let user = users.find((user) => 
+        `${user.firstName} ${user.lastName}` == username
+    )
+
+    if (username === 'admin' && password === 'admin' || ( user && user.password == password))
         res.redirect('/users')
     else
         res.send(template('Login', htmlContent('Invalid credentials. Please try again')))
