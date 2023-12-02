@@ -1,21 +1,12 @@
 const express = require('express')
 const apiLogin = express.Router()
 
-const users = require('../../data/fakeUsers')
+const AuthenticationService = require('../../services/authentication.service')
 
-apiProducts.post('/', (req, res) => {
-    let {email, isAdmin} = {...req.body}
-
-    let status = 200
-    let result = {isAuthenticated: false}
-
-    if (!users.find(user => user.email == email && user.isAdmin == isAdmin)) 
-    {
-        result = {isAuthenticated: true}
-        status = 401
-    }
-
-   res.status(status).send(result)
+apiLogin.post('/', (req, res) => {
+    let {username, password} = req.body
+    let result = AuthenticationService.authenticate(username, password)
+    res.status((result) ? 200 : 401).send(result)
 })
 
 module.exports = apiLogin

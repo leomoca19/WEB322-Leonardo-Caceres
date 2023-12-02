@@ -1,31 +1,23 @@
 const express = require('express')
 const apiUsers = express.Router()
 
-const users = require('../../data/fakeUsers')
+const UsersService = require('../../services/users.service')
 
 apiUsers.get('/', (req, res) => 
-    res.send(users)
+    res.send(UsersService.findAll())
 )
 
-apiUsers.get('/:id', (req,res) =>{
-    const id = req.params.id
-    const user = users.find(user => user.id == id)
+apiUsers.get('/:id', (req,res) =>
+    res.send(UsersService.findById(req.params.id))
+)
 
-    res.send(user)
-})
+apiUsers.delete('/:id', (req,res) =>
+    res.send(UsersService.delete(id))
+)
 
-apiUsers.delete('/:id', (req,res) =>{
-    const id = req.params.id
-    const user = users.find(user => user.id == id)
-
-    users.filter((id) => id != user.id)
-})
-
-apiUsers.post('/', (req,res) =>{
-    let newUser = {...req.body} //verify if works as expected
-    users.push(newUser)
-    res.send(newUser)
-})
+apiUsers.post('/', (req,res) => 
+    res.send(UsersService.create({...req.body})) // check if works
+)
 
 
 module.exports = apiUsers
