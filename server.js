@@ -1,14 +1,11 @@
 const express = require('express')
-// const bodyParser = require('body-parser') // check if can be dropped
+const bodyParser = require('body-parser')
 const routes = require('./routes')
 const apiRoutes = require('./routes/api.routes')
 const { connect, sync } = require("./db");
 const app = express()
 const PORT = 8080
 
-// necesary for reading data from req.body, used in login
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
 
 
 async function init() {
@@ -20,14 +17,9 @@ async function init() {
 init()
 
 
-//SET THE VIEW ENGINE
-// app.set("view engine", "ejs");
-// app.set("views", __dirname + "/views");
-
-
 //JSON middleware
 app.use(express.json())
-// app.use(bodyParser.urlencoded({ extended: true })) // check if can be dropped
+app.use(bodyParser.urlencoded({ extended: true })) 
 
 
 //route handling
