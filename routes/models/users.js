@@ -7,9 +7,14 @@ apiUsers.get('/', (req, res) =>
     res.send(UsersService.findAll())
 )
 
-apiUsers.get('/:id', (req,res) =>
-    res.send(UsersService.findById(req.params.id))
-)
+apiUsers.get('/:id', async (req, res) => {
+    let userWithOrders = await UsersService.findByIdWithOrders(req.params.id)
+
+    if (userWithOrders)
+        res.json(userWithOrders)
+    else
+        res.status(404).json({ error: 'User not found' })
+})
 
 apiUsers.delete('/:id', (req,res) =>
     res.send(UsersService.delete(req.params.id))
