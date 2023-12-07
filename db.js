@@ -180,7 +180,8 @@ const seedDatabase = async () => {
                 description: 'Ordered productId 2'
             },
         ]
-  
+        
+        //CURRENTLY NOT WORKING
         // Populate the Orders table
         if (await orders.count() < 1) {
             await orders.bulkCreate(orderData)
