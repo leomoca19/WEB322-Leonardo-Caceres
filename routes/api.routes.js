@@ -11,6 +11,6 @@ const apiRoutes = express.Router()
 apiRoutes.use('/api/login', apiLogin)
 apiRoutes.use('/users', apiUsers)
 apiRoutes.use('/products', apiProducts)
-apiOrders.use('/orders', apiOrders)
+apiRoutes.use('/orders', apiOrders)
 
 module.exports = apiRoutes
