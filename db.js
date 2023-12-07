@@ -182,22 +182,14 @@ const seedDatabase = async () => {
         ]
   
         // Populate the Orders table
-        try {
-            // appearent bug here:
-            // orders is not populated
-            if (await orders.count() < 1) {
-                await orders.bulkCreate(orderData);
-                console.log('Orders table populated successfully');
-            } else {
-                console.log('Orders table already has data. Skipping population.');
-            }
-        }
-        catch(error){
-            console.log(`could not populate orders, error: ${error}`);
-        }
-        console.log('Database seeded successfully')
-    }   
-        catch (error) {
+        if (await orders.count() < 1) {
+            await orders.bulkCreate(orderData)
+            console.log('Orders table populated successfully')
+        } else 
+            console.log('Orders table already has data. Skipping population.')
+
+    }
+    catch (error) {
             console.error('Error seeding database:', error);
     }
   }
