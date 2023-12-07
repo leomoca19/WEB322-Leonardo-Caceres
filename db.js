@@ -191,7 +191,10 @@ const seedDatabase = async () => {
             } else {
                 console.log('Orders table already has data. Skipping population.');
             }
-
+        }
+        catch(error){
+            console.log(`could not populate orders, error: ${error}`);
+        }
         console.log('Database seeded successfully')
     }   
         catch (error) {
