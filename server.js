@@ -8,7 +8,6 @@ const app = express()
 const PORT = 8080
 
 
-
 async function init() {
     await connect()
     await sync()
