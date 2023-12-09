@@ -159,6 +159,8 @@ const deleteProductForm = `
   <input type="text" id="productId" name="productId" required/>
   
   <button type="submit">Confirm Delete</button>
+
+  <h3>This button is not working at the moment</h3>
 </form>
 `
 
