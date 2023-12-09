@@ -2,23 +2,23 @@ const express = require('express')
 const loginRoutes = express.Router()
 const {template, htmlContent} = require('./htmlUtils')
 
-const users = require('../data/fakeUsers.json')
+const AuthenticationService = require('../services/authentication.service')
 
 loginRoutes.get('/', (req, res)=>
     res.send(template('Login', htmlContent()))
 )
 
 loginRoutes.post('/', (req, res)=>{
-    let { username, password } = req.body
+    const { username, password } = req.body;
+    const authentication = AuthenticationService.authenticate(username, password)
 
-    let user = users.find((user) => 
-        `${user.firstName} ${user.lastName}` == username
-    )
-
-    if (username === 'admin' && password === 'password' || ( user && user.password == password))
-        res.redirect('/users')
-    else
-        res.send(template('Login', htmlContent('Invalid credentials. Please try again')))
+    if (authentication.isAuthenticated) {
+        req.session.auth = authentication
+        res.redirect(`/users`)
+    } 
+      else 
+        res.redirect("/")
 })
+
 
 module.exports = loginRoutes
