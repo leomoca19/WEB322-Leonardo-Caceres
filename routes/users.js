@@ -1,6 +1,6 @@
 const express = require('express')
 const userRoutes = express.Router()
-const {template, userDetails, table, userForm} = require('./htmlUtils')
+const {template, userDetails, table, newUserForm} = require('./htmlUtils')
 const UsersService = require('../services/users.service')
 
 
@@ -19,7 +19,7 @@ updateUserList()
 
 
 userRoutes.get('/', async (req,res)=>
-    res.send(template('Users', table(userList, userForm)))
+    res.send(template('Users', table(userList, newUserForm)))
 )
 
 userRoutes.get('/:id', async (req, res) => {
@@ -31,7 +31,7 @@ userRoutes.get('/:id', async (req, res) => {
 userRoutes.post('/', async (req,res) => {
     await UsersService.create({...req.body})
     await updateUserList()
-    res.send(template('Users', table(userList, userForm)))
+    res.send(template('Users', table(userList, newUserForm)))
 })
 
 module.exports = userRoutes
