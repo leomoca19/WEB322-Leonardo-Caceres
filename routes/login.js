@@ -5,7 +5,7 @@ const {template, htmlContent} = require('./htmlUtils')
 const AuthenticationService = require('../services/authentication.service')
 
 loginRoutes.get('/', (req, res)=>
-    res.send(template('Login', htmlContent()))
+    res.send(template('Leonardo de la Mora Caceres', htmlContent()))
 )
 
 loginRoutes.post('/', (req, res)=>{
