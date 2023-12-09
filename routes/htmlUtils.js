@@ -18,7 +18,6 @@ const template = (title, html) => `
   </html>
 `
 
-
 const htmlContent = (errorMsg = '') => `
   <form method="POST">
     <div>${errorMsg}</div>
@@ -37,8 +36,8 @@ const htmlContent = (errorMsg = '') => `
 `
 
 const userDetails = (user) => `
-  <table class="user-table">
-  <tbody>
+<table class="user-table">
+<tbody>
       <tr>
           <th>ID:</th>
           <td>${user.id}</td>
@@ -70,4 +69,108 @@ const userDetails = (user) => `
   </tbody>
 `
 
-module.exports = {template, htmlContent, userDetails}
+const productDetails = (product) => `
+<table class="product-table">
+  <tbody>
+    <tr>
+      <th>ID:</th>
+      <td>${product.id}</td>
+    </tr>
+    <tr>
+      <th>Name:</th>
+      <td>${product.name}</td>
+    </tr>
+    <tr>
+      <th>ISBN:</th>
+      <td>${product.isbn}</td>
+    </tr>
+    <tr>
+      <th>Price:</th>
+      <td>${product.price}</td>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <td>${product.description}</td>
+    </tr>
+  </tbody>
+</table>
+`
+
+const table = (list = [], form='') => `
+  <table class="user-table">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Name</th>
+          </tr>
+      </thead>
+      <tbody>
+          ${list.slice(0, 25).join('')}
+      </tbody>
+  </table>
+  ${form}
+`
+
+const newUserForm =  `
+  </br></br>
+  <h3>Add User</h3>
+  <form method="POST" action="/users">
+    <br>
+
+    First Name:&emsp;&emsp; 
+    <input type="text" name="firstName"/>
+    <br>
+
+    Last Name:&nbsp;&nbsp; 
+    <input type="text" name="lastName"/>
+    <br>
+
+    Email:&nbsp;&nbsp; 
+    <input type="text" name="email"/>
+    <br>
+
+    Password:&nbsp;&nbsp; 
+    <input type="password" name="password"/>
+    <br>
+
+    Date of Birth:&nbsp;&nbsp; 
+    <input type="date" name="dob"/>
+    <br>
+
+    Company:&nbsp;&nbsp; 
+    <input type="text" name="company"/>
+    <br>
+
+    Phone:&nbsp;&nbsp; 
+    <input type="text" name="phone"/>
+    <br>
+
+    <button type="submit">Add User</button>
+  </form>
+`
+
+const deleteProductForm = `
+</br></br>
+<h3>Delete a Product</h3>
+<form method="POST" action="/products/?_method=DELETE">
+  <p>Insert the if of the product to delete</p>
+
+  <label for="productId">Product Id:</label>
+  <input type="text" id="productId" name="productId" required/>
+  
+  <button type="submit">Confirm Delete</button>
+
+  <h3>This button is not working at the moment</h3>
+</form>
+`
+
+
+module.exports = {
+  template,
+  htmlContent,
+  userDetails,
+  productDetails,
+  table,
+  newUserForm,
+  deleteProductForm,
+}
