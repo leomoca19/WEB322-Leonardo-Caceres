@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cookies = require('./sesion')
 const routes = require('./routes')
 const apiRoutes = require('./routes/api.routes')
 const { connect, sync } = require("./db");
@@ -16,6 +17,8 @@ async function init() {
 //Connectoin to database
 init()
 
+//Session middleware
+app.use(cookies)
 
 //JSON middleware
 app.use(express.json())
