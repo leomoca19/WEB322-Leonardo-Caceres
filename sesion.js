@@ -12,16 +12,19 @@ cookies.use(
 )
 
 
-const path = req.path
-if (path === "/" || path.includes("/api")) 
-  next()
+cookies.use((req, res, next) => {
+  const path = req.path
 
-else {
-  if (req?.session?.auth?.isAuthenticated) 
+  if (path === "/" || path.includes("/api")) 
     next()
-  else 
-    res.redirect("/");
-}
+
+  else {
+    if (req?.session?.auth?.isAuthenticated) 
+      next()
+    else 
+      res.redirect("/")
+  }
+})
 
 
 module.exports = cookies
