@@ -112,7 +112,8 @@ const table = (list, form='') => `
 `
 
 const newUserForm =  `
-  <h1>Add User</h1>
+  </br></br>
+  <h3>Add User</h3>
   <form method="POST" action="/users">
     <br>
 
@@ -149,15 +150,16 @@ const newUserForm =  `
 `
 
 const deleteProductForm = `
-<h1>Delete a Product</h1>
-  <form method="POST" action="/products/?_method=DELETE">
-    <br>
+</br></br>
+<h3>Delete a Product</h3>
+<form method="POST" action="/products/?_method=DELETE">
+  <p>Insert the if of the product to delete</p>
 
-    <label for="">:</label>
-    <input type="" id=""/>
-
-    <button type="submit">Delete Product</button>
-  </form>
+  <label for="productId">Product Id:</label>
+  <input type="text" id="productId" name="productId" required/>
+  
+  <button type="submit">Confirm Delete</button>
+</form>
 `
 
 
