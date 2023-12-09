@@ -14,7 +14,7 @@ async function init() {
     await sync()
 }
 
-//Connectoin to database
+//Connection to database
 init()
 
 //Session middleware
