@@ -1,12 +1,42 @@
 const express = require('express')
-const apiProducts = express.Router()
-const {template} = require('./htmlUtils')
+const productRoutes = express.Router()
+const { template, productDetails, table, deleteProductForm } = require('./htmlUtils')
+const ProductsService = require('../services/product.service')
 
-const products = require('../data/fakeProducts')
+let products
+let productList
 
-apiProducts.get('/', (req, res) => 
-    //make a table to display products
-    res.send(template("Products", products))
+const updateProductList = async () => {
+  products = await ProductsService.findAll()
+  productList = products.map(product => `
+    <tr>
+      <td>${product.id}</td>
+      <td><a href="/users/${product.id}">${product.name}</a></td>
+    </tr>
+  `)
+}
+updateProductList()
+
+
+productRoutes.get('/', (req, res) => 
+    res.send(template("Products", table(productList, deleteProductForm)))
 )
 
-module.exports = apiProducts
+productRoutes.get('/:id', async (req, res) => {
+    let product = await ProductsService.findById(req.params.id)
+    res.send(template('Details', productDetails(product)))
+})
+
+productRoutes.post('/', async (req, res) => {
+    await ProductsService.create({...req.body})
+    await updateProductList()
+    res.redirect('/products')
+})
+
+productRoutes.delete('/:id', async (req, res) => {
+    await ProductsService.delete(req.params.id) 
+    res.redirect('/products')
+})
+
+
+module.exports = productRoutes
