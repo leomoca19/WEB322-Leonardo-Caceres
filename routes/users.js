@@ -1,38 +1,37 @@
 const express = require('express')
 const userRoutes = express.Router()
-const {template, userDetails} = require('./htmlUtils')
+const {template, userDetails, table, userForm} = require('./htmlUtils')
+const UsersService = require('../services/users.service')
 
 
-//Data structure
-const users = require('../data/fakeUsers.json')
-
-userRoutes.get('/', (req,res)=>{
-    const userList = users.map(user => `
-        <tr>
-            <td>${user.id}</td>
-            <td><a href="/users/${user.id}">${user.firstName} ${user.lastName}</a></td>
-        </tr>
+let users
+let userList
+const updateUserList = async() => {
+    users = await UsersService.findAll()
+    userList = users.map(user => `
+      <tr>
+        <td>${user.id}</td>
+        <td><a href="/users/${user.id}">${user.firstName} ${user.lastName}</a></td>
+      </tr>
     `)
+}
+updateUserList()
 
-    const table = `
-        <table class="user-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${userList.slice(0, 25).join('')}
-            </tbody>
-        </table>
-    `
 
-    res.send(template('Users', table))
+userRoutes.get('/', async (req,res)=>
+    res.send(template('Users', table(userList, userForm)))
+)
+
+userRoutes.get('/:id', async (req, res) => {
+    let user = await UsersService.findById(req.params.id)
+    
+    res.send(template('Details', userDetails(user)))
 })
 
-userRoutes.get('/:id', (req, res) => 
-    res.send(template('Details', userDetails(UsersService.findById(req.params.id))))
-)
+userRoutes.post('/', async (req,res) => {
+    await UsersService.create({...req.body})
+    await updateUserList()
+    res.send(template('Users', table(userList, userForm)))
+})
 
 module.exports = userRoutes
