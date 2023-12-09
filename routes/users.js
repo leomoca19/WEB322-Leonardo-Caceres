@@ -31,7 +31,7 @@ userRoutes.get('/:id', async (req, res) => {
 userRoutes.post('/', async (req,res) => {
     await UsersService.create({...req.body})
     await updateUserList()
-    res.send(template('Users', table(userList, newUserForm)))
+    res.redirect('/users')
 })
 
 module.exports = userRoutes
