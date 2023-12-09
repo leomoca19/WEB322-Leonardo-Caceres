@@ -96,7 +96,7 @@ const productDetails = (product) => `
 </table>
 `
 
-const table = (list, form='') => `
+const table = (list = [], form='') => `
   <table class="user-table">
       <thead>
           <tr>
